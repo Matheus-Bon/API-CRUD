@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+}); */
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -31,6 +31,7 @@ Route::middleware('auth:api')->group(function () {
     /* Rotas do CRUD */
     Route::get('/list', [UserController::class, 'index'])->middleware('permission:read');
     Route::post('/store/user', [UserController::class, 'store'])->middleware('permission:create');
+    Route::get('/user/{id}/edit', [UserController::class, 'show'])->middleware('permission:read');
     Route::put('/update/{id}/user', [UserController::class, 'update'])->middleware('permission:update');
     Route::delete('/delete/{id}/user', [UserController::class, 'destroy'])->middleware('permission:delete');
 });

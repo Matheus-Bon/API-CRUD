@@ -15,28 +15,28 @@ class MangerSeeder extends Seeder
     {
         // Admin
         User::create([
-            'name' => 'Admin',
+            'name' => 'Matheus Bon',
             'email' => 'admin@gmail.com',
             'password' => 'password',
         ])->assignRole('admin');
 
         // Moderador
         User::create([
-            'name' => 'Moderador',
+            'name' => 'Leonardo Souza',
             'email' => 'moderador@gmail.com',
             'password' => 'password',
         ])->assignRole('moderador');
 
         // Financeiro Edit
         User::create([
-            'name' => 'Financeiro Edit',
+            'name' => 'Marcela Ribeiro',
             'email' => 'finaceiro.edit@gmail.com',
             'password' => 'password',
         ])->assignRole('financeiro-edit');
 
         // Financeiro Delete
         User::create([
-            'name' => 'Financeiro Delete',
+            'name' => 'Gabriela Neves',
             'email' => 'finaceiro.delete@gmail.com',
             'password' => 'password',
         ])->assignRole('financeiro-delete');
