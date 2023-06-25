@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        
+
         // Add as 'permissões' e 'cargos' criados no RoleSeeder
         $this->call(RoleSeeder::class);
         
-        // Cria os cargos
+        // Cria os adms
         $this->call(MangerSeeder::class);
         
         User::factory()->count(20)->create();

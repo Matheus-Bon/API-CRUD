@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(User::doesntHave('roles')->get());
+        return response()->json(User::whereNull('role_id')->get());
     }
 
     /**

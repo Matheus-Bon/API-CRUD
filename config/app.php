@@ -169,8 +169,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     
-        // ACL
-        Spatie\Permission\PermissionServiceProvider::class,
     ])->toArray(),
 
     /*

@@ -57,9 +57,9 @@ class AuthController extends Controller
     }
 
     public function logout (Request $request) {
-        $token = $request->user()->token();
-        $token->revoke();
-        
-        return response()->json(['message' => 'Desconectado.']);
+
+       $request->user()->token()->revoke();
+
+        return response()->json('Desconectado');
     }
 }
