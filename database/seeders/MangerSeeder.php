@@ -35,7 +35,7 @@ class MangerSeeder extends Seeder
         User::create([
             'name' => 'Marcela Ribeiro',
             'role_id' => 3,
-            'email' => 'finaceiro.edit@gmail.com',
+            'email' => 'financeiro.edit@gmail.com',
             'password' => 'password',
             
         ]);
@@ -44,7 +44,7 @@ class MangerSeeder extends Seeder
         User::create([
             'name' => 'Gabriela Neves',
             'role_id' => 4,
-            'email' => 'finaceiro.delete@gmail.com',
+            'email' => 'financeiro.delete@gmail.com',
             'password' => 'password',
             
         ]);

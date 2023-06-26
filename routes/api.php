@@ -29,11 +29,15 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     /* Rotas do CRUD */
-    Route::get('/list', [UserController::class, 'index'])->middleware('can:read');
-    Route::post('/store/user', [UserController::class, 'store'])->middleware('can:create');
-    Route::get('/user/{id}/edit', [UserController::class, 'show'])->middleware('can:read');
-    Route::put('/update/{id}/user', [UserController::class, 'update'])->middleware('can:update');
-    Route::delete('/delete/{id}/user', [UserController::class, 'destroy'])->middleware('can:delete');
+    Route::get('/list', [UserController::class, 'index']);
+
+    Route::post('/store/user', [UserController::class, 'store']);
+
+    Route::get('/user/{id}/edit', [UserController::class, 'show']);
+
+    Route::put('/update/{id}/user', [UserController::class, 'update']);
+
+    Route::delete('/delete/{id}/user', [UserController::class, 'destroy']);
 });
 
 

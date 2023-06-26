@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestValidateStore;
+use App\Http\Requests\RequestValidateUpdate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -15,6 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
         return response()->json(User::whereNull('role_id')->get());
     }
 
@@ -23,19 +27,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {   
+        $this->authorize('create', User::class);
+
         $request->validate([
             'name' => ['required', 'max:255', 'string'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed']
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ])->save();
-
-        return response()->json($user, 201);
+    
+        return response()->json('User criado', 201);
     }
 
     /**
@@ -43,6 +49,7 @@ class UserController extends Controller
      */
     public function show(Request $request, $id)
     {   
+        $this->authorize('view', User::class);
         $user = User::findOrFail($id);
 
         return response()->json($user);
@@ -53,9 +60,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        $this->authorize('update', User::class);
+
         $request->validate([
             'name' => ['required', 'max:255', 'string'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+            'email' => ['required', 'email', 'max:255',  Rule::unique('users')->ignore($id),],
         ]);
 
         $user = User::findOrFail($id);
@@ -64,6 +73,7 @@ class UserController extends Controller
         $user->save();
 
         return response()->json('User att. !');
+
     }
 
     /**
@@ -71,9 +81,12 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+
+        $this->authorize('delete', User::class);
+
         $user = User::findOrFail($id);
         $user->delete();
-
         return response()->json('User deletado!');
+
     }
 }
